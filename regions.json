@@ -1,0 +1,528 @@
+{
+ "description": "Areas published as bounded Protomaps Basemap archives. Each bbox is [west, south, east, north] in WGS84 degrees and already includes a margin so neighbouring files overlap. Add an entry and push to publish a new area.",
+ "maxzoom": 15,
+ "max_file_mb": 1900,
+ "split_overlap_degrees": 0.1,
+ "regions": [
+  {
+   "name": "us-alabama",
+   "title": "Alabama",
+   "bbox": [
+    -88.6232,
+    29.9944,
+    -84.7382,
+    35.158
+   ]
+  },
+  {
+   "name": "us-alaska",
+   "title": "Alaska",
+   "bbox": [
+    -179.3811,
+    51.0251,
+    180.0097,
+    71.5898
+   ]
+  },
+  {
+   "name": "us-arizona",
+   "title": "Arizona",
+   "bbox": [
+    -114.9663,
+    31.1823,
+    -108.8952,
+    37.1537
+   ]
+  },
+  {
+   "name": "us-arkansas",
+   "title": "Arkansas",
+   "bbox": [
+    -94.7679,
+    32.8543,
+    -89.491,
+    36.6497
+   ]
+  },
+  {
+   "name": "us-california",
+   "title": "California",
+   "bbox": [
+    -124.632,
+    32.3795,
+    -113.9812,
+    42.1595
+   ]
+  },
+  {
+   "name": "us-colorado",
+   "title": "Colorado",
+   "bbox": [
+    -109.2102,
+    36.8424,
+    -101.8915,
+    41.1534
+   ]
+  },
+  {
+   "name": "us-connecticut",
+   "title": "Connecticut",
+   "bbox": [
+    -73.8778,
+    40.8009,
+    -71.6372,
+    42.2005
+   ]
+  },
+  {
+   "name": "us-delaware",
+   "title": "Delaware",
+   "bbox": [
+    -75.939,
+    38.3011,
+    -74.8342,
+    39.9895
+   ]
+  },
+  {
+   "name": "us-florida",
+   "title": "Florida",
+   "bbox": [
+    -87.7849,
+    24.2463,
+    -79.8243,
+    31.151
+   ]
+  },
+  {
+   "name": "us-georgia",
+   "title": "Georgia",
+   "bbox": [
+    -85.7552,
+    30.2058,
+    -80.633,
+    35.1513
+   ]
+  },
+  {
+   "name": "us-hawaii",
+   "title": "Hawaii",
+   "bbox": [
+    -178.5936,
+    18.7155,
+    -154.6058,
+    28.6673
+   ]
+  },
+  {
+   "name": "us-idaho",
+   "title": "Idaho",
+   "bbox": [
+    -117.393,
+    41.8382,
+    -110.8935,
+    49.1508
+   ]
+  },
+  {
+   "name": "us-illinois",
+   "title": "Illinois",
+   "bbox": [
+    -91.6631,
+    36.8203,
+    -86.8699,
+    42.6585
+   ]
+  },
+  {
+   "name": "us-indiana",
+   "title": "Indiana",
+   "bbox": [
+    -88.2479,
+    37.6217,
+    -84.6345,
+    41.9114
+   ]
+  },
+  {
+   "name": "us-iowa",
+   "title": "Iowa",
+   "bbox": [
+    -96.7895,
+    40.2254,
+    -89.9901,
+    43.6512
+   ]
+  },
+  {
+   "name": "us-kansas",
+   "title": "Kansas",
+   "bbox": [
+    -102.2018,
+    36.843,
+    -94.4384,
+    40.1532
+   ]
+  },
+  {
+   "name": "us-kentucky",
+   "title": "Kentucky",
+   "bbox": [
+    -89.7212,
+    36.3471,
+    -81.8148,
+    39.2977
+   ]
+  },
+  {
+   "name": "us-louisiana",
+   "title": "Louisiana",
+   "bbox": [
+    -94.1934,
+    28.7051,
+    -88.6084,
+    33.1696
+   ]
+  },
+  {
+   "name": "us-maine",
+   "title": "Maine",
+   "bbox": [
+    -71.2339,
+    42.7671,
+    -66.7354,
+    47.6098
+   ]
+  },
+  {
+   "name": "us-maryland",
+   "title": "Maryland",
+   "bbox": [
+    -79.6377,
+    37.7366,
+    -74.8363,
+    39.873
+   ]
+  },
+  {
+   "name": "us-massachusetts",
+   "title": "Massachusetts",
+   "bbox": [
+    -73.6582,
+    41.0371,
+    -69.7089,
+    43.0368
+   ]
+  },
+  {
+   "name": "us-michigan",
+   "title": "Michigan",
+   "bbox": [
+    -90.5684,
+    41.5461,
+    -81.973,
+    48.4561
+   ]
+  },
+  {
+   "name": "us-minnesota",
+   "title": "Minnesota",
+   "bbox": [
+    -97.3891,
+    43.3494,
+    -89.3334,
+    49.5345
+   ]
+  },
+  {
+   "name": "us-mississippi",
+   "title": "Mississippi",
+   "bbox": [
+    -91.805,
+    29.9898,
+    -87.9479,
+    35.1461
+   ]
+  },
+  {
+   "name": "us-missouri",
+   "title": "Missouri",
+   "bbox": [
+    -95.9247,
+    35.8457,
+    -88.949,
+    40.7636
+   ]
+  },
+  {
+   "name": "us-montana",
+   "title": "Montana",
+   "bbox": [
+    -116.1992,
+    44.2079,
+    -103.8897,
+    49.1511
+   ]
+  },
+  {
+   "name": "us-nebraska",
+   "title": "Nebraska",
+   "bbox": [
+    -104.2035,
+    39.8499,
+    -95.1583,
+    43.1517
+   ]
+  },
+  {
+   "name": "us-nevada",
+   "title": "Nevada",
+   "bbox": [
+    -120.1565,
+    34.8519,
+    -113.8895,
+    42.1518
+   ]
+  },
+  {
+   "name": "us-new-hampshire",
+   "title": "New Hampshire",
+   "bbox": [
+    -72.7071,
+    42.547,
+    -70.4251,
+    45.4558
+   ]
+  },
+  {
+   "name": "us-new-jersey",
+   "title": "New Jersey",
+   "bbox": [
+    -75.7136,
+    38.6387,
+    -73.7351,
+    41.5076
+   ]
+  },
+  {
+   "name": "us-new-mexico",
+   "title": "New Mexico",
+   "bbox": [
+    -109.2004,
+    31.1822,
+    -102.852,
+    37.1502
+   ]
+  },
+  {
+   "name": "us-new-york",
+   "title": "New York",
+   "bbox": [
+    -79.9126,
+    40.3266,
+    -71.6275,
+    45.1659
+   ]
+  },
+  {
+   "name": "us-north-carolina",
+   "title": "North Carolina",
+   "bbox": [
+    -84.4718,
+    33.6029,
+    -75.2501,
+    36.7381
+   ]
+  },
+  {
+   "name": "us-north-dakota",
+   "title": "North Dakota",
+   "bbox": [
+    -104.199,
+    45.7851,
+    -96.4044,
+    49.1506
+   ]
+  },
+  {
+   "name": "us-ohio",
+   "title": "Ohio",
+   "bbox": [
+    -84.9703,
+    38.2534,
+    -80.3687,
+    42.4771
+   ]
+  },
+  {
+   "name": "us-oklahoma",
+   "title": "Oklahoma",
+   "bbox": [
+    -103.1524,
+    33.4658,
+    -94.281,
+    37.1523
+   ]
+  },
+  {
+   "name": "us-oregon",
+   "title": "Oregon",
+   "bbox": [
+    -124.8535,
+    41.8421,
+    -116.3133,
+    46.4491
+   ]
+  },
+  {
+   "name": "us-pennsylvania",
+   "title": "Pennsylvania",
+   "bbox": [
+    -80.6699,
+    39.5698,
+    -74.5396,
+    42.6661
+   ]
+  },
+  {
+   "name": "us-rhode-island",
+   "title": "Rhode Island",
+   "bbox": [
+    -72.0573,
+    40.9458,
+    -70.9386,
+    42.1688
+   ]
+  },
+  {
+   "name": "us-south-carolina",
+   "title": "South Carolina",
+   "bbox": [
+    -83.5039,
+    31.846,
+    -78.3493,
+    35.3655
+   ]
+  },
+  {
+   "name": "us-south-dakota",
+   "title": "South Dakota",
+   "bbox": [
+    -104.2079,
+    42.3297,
+    -96.2865,
+    46.0954
+   ]
+  },
+  {
+   "name": "us-tennessee",
+   "title": "Tennessee",
+   "bbox": [
+    -90.4605,
+    34.8329,
+    -81.4969,
+    36.8283
+   ]
+  },
+  {
+   "name": "us-texas",
+   "title": "Texas",
+   "bbox": [
+    -106.7956,
+    25.687,
+    -93.358,
+    36.6507
+   ]
+  },
+  {
+   "name": "us-utah",
+   "title": "Utah",
+   "bbox": [
+    -114.2029,
+    36.8477,
+    -108.8916,
+    42.1517
+   ]
+  },
+  {
+   "name": "us-vermont",
+   "title": "Vermont",
+   "bbox": [
+    -73.5879,
+    42.5769,
+    -71.315,
+    45.1667
+   ]
+  },
+  {
+   "name": "us-virginia",
+   "title": "Virginia",
+   "bbox": [
+    -83.8254,
+    36.3909,
+    -75.0164,
+    39.616
+   ]
+  },
+  {
+   "name": "us-washington",
+   "title": "Washington",
+   "bbox": [
+    -124.999,
+    45.3935,
+    -116.7661,
+    49.1524
+   ]
+  },
+  {
+   "name": "us-west-virginia",
+   "title": "West Virginia",
+   "bbox": [
+    -82.7946,
+    37.0515,
+    -77.5695,
+    40.7888
+   ]
+  },
+  {
+   "name": "us-wisconsin",
+   "title": "Wisconsin",
+   "bbox": [
+    -93.0394,
+    42.3417,
+    -86.0995,
+    47.4598
+   ]
+  },
+  {
+   "name": "us-wyoming",
+   "title": "Wyoming",
+   "bbox": [
+    -111.2046,
+    40.8448,
+    -103.9022,
+    45.1558
+   ]
+  },
+  {
+   "name": "us-district-of-columbia",
+   "title": "District of Columbia",
+   "bbox": [
+    -77.27,
+    38.64,
+    -76.76,
+    39.15
+   ]
+  },
+  {
+   "name": "gb-greater-london",
+   "title": "Greater London",
+   "bbox": [
+    -0.71,
+    51.19,
+    0.53,
+    51.79
+   ]
+  }
+ ]
+}
