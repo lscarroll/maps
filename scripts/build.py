@@ -14,6 +14,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 import subprocess
 import sys
 import urllib.error
@@ -106,18 +107,38 @@ def split(bbox: list[float], overlap: float) -> list[list[float]]:
     return [[west, south, east, middle + overlap], [west, middle - overlap, east, north]]
 
 
-def extract(source: str, name: str, bbox: list[float], config: dict) -> list[tuple[str, list[float], Path]]:
-    """Extract a region; split recursively until every file is under the limit."""
-    target = WORK / f"{name}.pmtiles"
-    run(
-        "pmtiles", "extract", source, str(target),
-        "--bbox=" + ",".join(f"{value:.4f}" for value in bbox),
-        f"--maxzoom={config['maxzoom']}",
+UNITS = {"B": 1, "kB": 1e3, "KB": 1e3, "MB": 1e6, "GB": 1e9, "TB": 1e12}
+
+
+def estimate(source: str, bbox: list[float], maxzoom: int) -> float:
+    """Archive size in bytes reported by `pmtiles extract --dry-run` (nothing is written)."""
+    result = subprocess.run(
+        ["pmtiles", "extract", source, str(WORK / "dry-run.pmtiles"), "--dry-run",
+         "--bbox=" + ",".join(f"{value:.4f}" for value in bbox), f"--maxzoom={maxzoom}"],
+        check=True, text=True, capture_output=True,
     )
-    if target.stat().st_size <= config["max_file_mb"] * 1024 * 1024:
-        return [(name, bbox, target)]
-    log(f"{name} is {target.stat().st_size // 1048576} MB; splitting")
-    target.unlink()
+    match = re.search(r"archive size of ([0-9.]+) ([kKMGT]?B)", result.stdout + result.stderr)
+    if not match:
+        raise RuntimeError("pmtiles dry run reported no archive size")
+    return float(match.group(1)) * UNITS[match.group(2)]
+
+
+def extract(source: str, name: str, bbox: list[float], config: dict) -> list[tuple[str, list[float], Path]]:
+    """Extract a region, splitting first (by dry-run estimate) so every file fits the limit."""
+    limit = config["max_file_mb"] * 1024 * 1024
+    size = estimate(source, bbox, config["maxzoom"])
+    log(f"{name}: estimated {size / 1048576:.0f} MB")
+    if size <= limit:
+        target = WORK / f"{name}.pmtiles"
+        run(
+            "pmtiles", "extract", source, str(target),
+            "--bbox=" + ",".join(f"{value:.4f}" for value in bbox),
+            f"--maxzoom={config['maxzoom']}",
+        )
+        if target.stat().st_size <= limit:
+            return [(name, bbox, target)]
+        target.unlink()
+    log(f"{name} exceeds {config['max_file_mb']} MB; splitting")
     parts: list[tuple[str, list[float], Path]] = []
     for index, half in enumerate(split(bbox, config["split_overlap_degrees"]), start=1):
         parts.extend(extract(source, f"{name}-{index}", half, config))

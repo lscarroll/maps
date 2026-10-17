@@ -18,11 +18,12 @@
    "name": "us-alaska",
    "title": "Alaska",
    "bbox": [
-    -179.3811,
-    51.0251,
-    180.0097,
-    71.5898
-   ]
+    -179.99,
+    51.0,
+    -129.8,
+    71.6
+   ],
+   "note": "Mainland and Aleutians east of 180\u00b0; islands west of the antimeridian are omitted"
   },
   {
    "name": "us-arizona",
