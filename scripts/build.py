@@ -37,22 +37,47 @@ def run(*command: str, capture: bool = False) -> str:
     return result.stdout if capture else ""
 
 
+def available(date: str) -> bool:
+    """True when the planet build answers a one-byte range read."""
+    request = urllib.request.Request(
+        PLANET.format(date=date),
+        headers={"Range": "bytes=0-0", "User-Agent": "market-maps-basemaps/1 (+github.com/" + REPO + ")"},
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            return response.status in (200, 206)
+    except (urllib.error.URLError, TimeoutError) as error:
+        log(f"{date}: {error}")
+        return False
+
+
 def planet_date() -> str:
     """Newest available daily build, or PLANET_DATE when pinned."""
     pinned = os.environ.get("PLANET_DATE", "").strip()
     if pinned:
         return pinned
+    try:
+        request = urllib.request.Request(
+            "https://build-metadata.protomaps.dev/builds.json",
+            headers={"User-Agent": "market-maps-basemaps/1"},
+        )
+        with urllib.request.urlopen(request, timeout=30) as response:
+            builds = json.load(response)
+        dates = sorted(
+            (str(build.get("key", "")).removesuffix(".pmtiles") for build in builds),
+            reverse=True,
+        )
+        for date in dates:
+            if len(date) == 8 and date.isdigit() and available(date):
+                return date
+    except (urllib.error.URLError, TimeoutError, ValueError) as error:
+        log(f"Build list unavailable: {error}")
     today = datetime.now(UTC).date()
     for back in range(0, 21):
         date = (today - timedelta(days=back)).strftime("%Y%m%d")
-        request = urllib.request.Request(PLANET.format(date=date), method="HEAD")
-        try:
-            with urllib.request.urlopen(request, timeout=30) as response:
-                if response.status == 200:
-                    return date
-        except urllib.error.URLError:
-            continue
-    raise SystemExit("No Protomaps planet build found in the last 21 days")
+        if available(date):
+            return date
+    raise RuntimeError("No Protomaps planet build found in the last 21 days")
 
 
 def header(path: Path | str) -> dict[str, str]:
@@ -150,4 +175,11 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        main()
+    except Exception as error:  # Surface the reason as a GitHub annotation.
+        detail = f"{type(error).__name__}: {error}"
+        if isinstance(error, subprocess.CalledProcessError) and error.stderr:
+            detail += " | " + error.stderr.strip().replace("\n", " ")[-800:]
+        print(f"::error title=Basemap build failed::{detail}", flush=True)
+        raise

@@ -36,10 +36,12 @@ jobs:
         run: |
           curl -fsSL -o pmtiles.tar.gz \
             https://github.com/protomaps/go-pmtiles/releases/download/v1.31.2/go-pmtiles_1.31.2_Linux_x86_64.tar.gz
-          echo "3ed7dbf4ec2e6dfe5e25b6f70d1ffc932729f93c86db353bf514dd71010a312f  pmtiles.tar.gz" | sha256sum -c -
+          echo "3ed7dbf4ec2e6dfe5e25b6f70d1ffc932729f93c86db353bf514dd71010a312f  pmtiles.tar.gz" | sha256sum -c - \
+            || { echo "::error title=pmtiles install::checksum mismatch"; exit 1; }
           mkdir -p "$RUNNER_TEMP/bin"
           tar -xzf pmtiles.tar.gz -C "$RUNNER_TEMP/bin" pmtiles
           echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+          echo "::notice title=pmtiles::$("$RUNNER_TEMP/bin/pmtiles" version 2>&1 | head -1)"
 
       - name: Build and publish
         env:
